@@ -12,22 +12,22 @@
 	* User
 
 ## Funcionalidades
-    * Cadastro, consulta, alteração e exclusão de médicos, seus telefones e endereços.
+	* Cadastro, consulta, alteração e exclusão de médicos, seus telefones e endereços.
 	* Cadastro, consulta, alteração e exclusão de unidades de saúde, seus telefones e endereços.
 	* Agendamento, alteração e exclusão de consultas médicas.
 	* Utilização de HTML5, CSS3 e Angular para a interface do usuário
-		** Calendário de visualização dos horários disponiveis dos médicos no formato de calendário.
-    * Controle de versão utilizando Git e GitHub para gerenciamento de projetos.  
+	* Calendário de visualização dos horários disponiveis dos médicos.
+	* Controle de versão utilizando Git e GitHub para gerenciamento de projetos.  
 ---
 ## Tecnologias utilizadas
-    * Java
-    * Spring
-    * MySQL
-    * HTML5
-    * CSS3
-    * Angular
-    * GIT
-    * GitHub
+	* Java
+	* Spring
+	* MySQL
+	* HTML5
+	* CSS3
+	* Angular
+	* GIT
+	* GitHub
 ---
 ## Como executar
 Para executar o sistema, é necessário ter instalado as seguintes tecnologias:
