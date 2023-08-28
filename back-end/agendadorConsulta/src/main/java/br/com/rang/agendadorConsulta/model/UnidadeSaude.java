@@ -1,10 +1,11 @@
 package br.com.rang.agendadorConsulta.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -53,9 +54,10 @@ public class UnidadeSaude implements Serializable {
 	@Column(name = "dt_abertura")
 	private Date dt_abertura;
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_criacao_unidade_saude")
-	private Timestamp dt_criacao_unidade_saude;
+	private LocalDateTime dt_criacao_unidade_saude;
 
 	@JsonManagedReference(value = "telefone_unidade_saude")
 	@OneToMany(mappedBy = "unidade_saude", cascade = { CascadeType.ALL })
@@ -66,7 +68,7 @@ public class UnidadeSaude implements Serializable {
 	private List<Endereco> enderecos_unidade_saude;
 
 	@JsonManagedReference(value = "unidade_saude_medico")
-	@OneToMany(mappedBy = "unidadeSaude", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "unidade_saude", cascade = { CascadeType.ALL })
 	private List<Medico> medicos;
 
 }

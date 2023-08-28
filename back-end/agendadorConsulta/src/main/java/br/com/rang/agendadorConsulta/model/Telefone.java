@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,25 +30,25 @@ public class Telefone implements Serializable {
 	private Long id;
 
 	@Column(name = "nr_celular")
-	private int nr_celular;
+	private Integer nr_celular;
 
 	@Column(name = "nr_ddd_celular")
-	private int nr_ddd_celular;
+	private Integer nr_ddd_celular;
 
 	@Column(name = "nr_ddd_telefone")
-	private int nr_ddd_telefone;
+	private Integer nr_ddd_telefone;
 
 	@Column(name = "nr_telefone")
-	private int nr_telefone;
+	private Integer nr_telefone;
 
 	@JsonBackReference(value = "telefone_medico")
 	@JoinColumn(name = "medico")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Medico medico;
 
 	@JsonBackReference(value = "telefone_unidade_saude")
 	@JoinColumn(name = "unidade_saude")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private UnidadeSaude unidade_saude;
 
 }
