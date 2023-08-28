@@ -1,9 +1,10 @@
 package br.com.rang.agendadorConsulta.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.rang.agendadorConsulta.model.enums.Status;
 import jakarta.persistence.Column;
@@ -35,17 +36,19 @@ public class Agendamento implements Serializable {
 	private Long id;
 	
 	@NotNull
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "ts_horario")
-	private Timestamp ts_horario;
+	@Column(name = "dt_marcacao")
+	private LocalDateTime dt_marcacao;
 
 	@NotNull
 	@Column(name = "status")
 	private Status status;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "dt_criacao_agendamento")
-	private Timestamp dt_criacao_agendamento;
+	private LocalDateTime dt_criacao_agendamento;
 
 	@JsonBackReference(value = "medico_agendamento")
 	@JoinColumn(name = "medico")

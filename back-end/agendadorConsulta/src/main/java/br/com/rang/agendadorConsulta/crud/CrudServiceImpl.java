@@ -3,6 +3,8 @@ package br.com.rang.agendadorConsulta.crud;
 import java.io.Serializable;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +16,9 @@ import jakarta.persistence.EntityNotFoundException;
 public abstract class CrudServiceImpl<T, ID extends Serializable> implements CrudService<T, ID> {
 
 	protected abstract JpaRepository<T, ID> getRepository();
+	
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
 	public T save(T entity) {
@@ -45,7 +50,11 @@ public abstract class CrudServiceImpl<T, ID extends Serializable> implements Cru
 	}
 
 	@Override
-	public abstract T update(ID id, T entity); // TODO Metodo tem que ser implementado manualmente
+	public  T update(ID id, T entityUpdate) {
+		T entity = getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException("A entidade do ID: " + id + " não foi encontrada"));
+		modelMapper.map(entityUpdate, entity);
+		return getRepository().save(entity);
+	}
 
 	@Override
 	public List<T> removeList(Long id, List<T> entityList) {
