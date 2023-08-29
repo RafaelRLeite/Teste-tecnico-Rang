@@ -1,0 +1,501 @@
+{
+	"info": {
+		"_postman_id": "e4d621ff-a8d9-48c6-9cf9-92eff2bf3e1e",
+		"name": "Teste-Logico-Rang",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24394709"
+	},
+	"item": [
+		{
+			"name": "Autenticacao",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"rafael\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "registrar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"rafael3\",\r\n    \"password\": \"admin2\",\r\n    \"role\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/auth/register"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agendamentos",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dt_marcacao\": \"2023-08-27 15:00:00\",\r\n    \"status\": 1,\r\n    \"dt_criacao_agendamento\": \"2023-08-24 12:40:00\",\r\n    \"medico\": {\r\n        \"id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/agendamento"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dt_marcacao\": \"2025-08-24 12:30:00\",\r\n    \"status\": 1,\r\n    \"dt_criacao_agendamento\": \"2023-08-24 12:30:00\",\r\n    \"medico\": {\r\n        \"id\": 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/agendamento/{{id_agendamento}}"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{domain}}/agendamento/{{id_agendamento}}"
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/agendamento"
+					},
+					"response": []
+				},
+				{
+					"name": "findPaginateAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/agendamento/paginate"
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/agendamento/{{id_agendamento}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medico",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tx_nome\": \"Teste de salvar medico 300\",\r\n    \"nr_cpf\": \"539.599.550-14\",\r\n    \"nr_crm\": \"987654321\",\r\n    \"tx_especialidade\": \"Ginecologista\",\r\n    \"dt_criacao_medico\": \"2023-08-24 12:55:00\",\r\n    \"unidade_saude\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/medico"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tx_nome\": \"Teste de salvar medico 7\",\r\n    \"nr_cpf\": \"03596172128\",\r\n    \"nr_crm\": \"987654321\",\r\n    \"tx_especialidade\": \"teste\",\r\n    \"dt_criacao_medico\": \"2023-08-24 12:55:00\",\r\n    \"unidade_saude\": {\r\n        \"id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/medico/{{id_medico}}"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{domain}}/medico/{{id_medico}}"
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/medico"
+					},
+					"response": []
+				},
+				{
+					"name": "findPaginateAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/medico/paginate"
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/medico/{{id_medico}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Unidade de Saude",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nr_cnpj\": \"12.993.793/0001-76\",\r\n    \"tx_nome_fantasia\": \"EF5 Empreendimentos 4\",\r\n    \"tx_razao_social\": \"Empresa Fictícia 25\",\r\n    \"dt_abertura\": \"2023-08-23\",\r\n    \"dt_criacao_unidade_saude\": \"2023-08-24 02:22:21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/unidade-saude"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nr_cnpj\": \"12.993.793/0001-76\",\r\n    \"tx_nome_fantasia\": \"EF5 Empreendimentos teste do teste\",\r\n    \"tx_razao_social\": \"Empresa Fictícia 5\",\r\n    \"dt_abertura\": \"2023-08-23\",\r\n    \"dt_criacao_unidade_saude\": \"2023-08-24 02:22:21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/unidade-saude/{{id_unidade_saude}}"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{domain}}/unidade-saude/{{id_unidade_saude}}"
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/unidade-saude"
+					},
+					"response": []
+				},
+				{
+					"name": "findPaginateAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/unidade-saude/paginate"
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/unidade-saude/{{id_unidade_saude}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Telefone",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nr_celular\": 983456789,\r\n    \"nr_ddd_celular\": 67,\r\n    \"nr_ddd_telefone\": 67,\r\n    \"nr_telefone\": 983456789,\r\n    \"long_medico\": null,\r\n    \"long_unidade_saude\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/telefone/to-list"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nr_celular\": 988765432,\r\n    \"nr_ddd_celular\": 201,\r\n    \"nr_ddd_telefone\": 201,\r\n    \"nr_telefone\": 988765432,\r\n    \"long_medico\": 2,\r\n    \"long_unidade_saude\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/telefone/to-list/{{id_telefone}}"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{domain}}/telefone/{{id_telefone}}"
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/telefone"
+					},
+					"response": []
+				},
+				{
+					"name": "findPaginateAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/telefone/paginate"
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/telefone/{{id_telefone}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Endereco",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nr_cep\": \"12345678\",\r\n    \"tx_bairro\": \"Cruzeiro do Sul\",\r\n    \"tx_complemento\": null,\r\n    \"tx_localidade\": \"Brasília\",\r\n    \"tx_logradouro\": \"Rua fulano de tal 2\",\r\n    \"tx_uf\": \"DF\",\r\n    \"long_medico\": 3,\r\n    \"long_unidade_saude\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/endereco/to-list"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nr_cep\": \"12345678\",\r\n    \"tx_bairro\": \"Cruzeiro do Sul\",\r\n    \"tx_complemento\": null,\r\n    \"tx_localidade\": \"Teste\",\r\n    \"tx_logradouro\": \"Rua fulano de tal 2\",\r\n    \"tx_uf\": \"DF\",\r\n    \"long_medico\": 4,\r\n    \"long_unidade_saude\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/endereco/to-list/{{id_endereco}}"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{domain}}/endereco/{{id_endereco}}"
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/endereco"
+					},
+					"response": []
+				},
+				{
+					"name": "findPaginateAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/endereco/paginate"
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/endereco/{{id_endereco}}"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id_agendamento",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "id_unidade_saude",
+			"value": "1"
+		},
+		{
+			"key": "id_medico",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "id_telefone",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "id_endereco",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "id_entity",
+			"value": "1"
+		}
+	]
+}
