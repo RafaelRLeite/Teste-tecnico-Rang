@@ -1,6 +1,9 @@
 package br.com.rang.agendadorConsulta.service;
 
-import org.modelmapper.ModelMapper;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -8,7 +11,6 @@ import org.springframework.stereotype.Service;
 import br.com.rang.agendadorConsulta.crud.CrudServiceImpl;
 import br.com.rang.agendadorConsulta.model.Agendamento;
 import br.com.rang.agendadorConsulta.repository.AgendamentoRepository;
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class AgendamentoServiceImpl extends CrudServiceImpl<Agendamento, Long> implements AgendamentoService {
@@ -16,18 +18,42 @@ public class AgendamentoServiceImpl extends CrudServiceImpl<Agendamento, Long> i
 	@Autowired
     private AgendamentoRepository agendamentoRepository;
 	
-	@Autowired
-	private ModelMapper modelMapper;
-
 	@Override
 	protected JpaRepository<Agendamento, Long> getRepository() {
 		return agendamentoRepository;
 	}
-	
+
 	@Override
-	public Agendamento update(Long id, Agendamento entity) {
-		Agendamento agendamento = getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException("A entidade do ID: " + id + " não foi encontrada"));
-		modelMapper.map(entity, agendamento);
-		return getRepository().save(agendamento);
+	public Agendamento save(Agendamento agendamento) {
+		List<Agendamento> agendamentos = agendamentoRepository.findAll();
+
+		boolean isAvailable = isHorarioDisponivel(agendamentos, agendamento.getDt_marcacao());
+
+		if (isAvailable) {
+			throw new RuntimeException("Conflito de horário com o médico.");
+		}
+
+		return super.save(agendamento);
 	}
+	
+	 private boolean isHorarioDisponivel(List<Agendamento> agendamentos, LocalDateTime dataHoraMarcacao) {
+		 
+		 LocalTime horaAbertura = LocalTime.of(8, 0);
+		 LocalTime horaFechamento = LocalTime.of(18, 0);
+		 LocalTime horaMarcacao = dataHoraMarcacao.toLocalTime();
+		 
+		 agendamentos.forEach(agendamento -> {
+			 System.out.println(agendamento.getDt_marcacao() + " --> " + dataHoraMarcacao);
+		 });
+		 
+		 if(horaMarcacao.isBefore(horaAbertura) || horaMarcacao.isAfter(horaFechamento))return false;
+		 
+		 boolean anyMatch = agendamentos.stream()
+			.anyMatch(agentamento -> agentamento.getDt_marcacao().equals(dataHoraMarcacao));
+		 return anyMatch;
+		 
+	    }
+	
+	
+	
 }
