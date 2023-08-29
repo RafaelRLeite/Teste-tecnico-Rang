@@ -27,10 +27,14 @@ public class SecurityConfig {
 				.csrf(csrf -> csrf.disable())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(authorize -> authorize
+						.requestMatchers("/home", "/css/**", "/js/**").permitAll()
 						.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-						.requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-						.requestMatchers(HttpMethod.POST, "/**").hasRole("ADM")
-						.anyRequest().authenticated()
+						.requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
+						.requestMatchers("/agendamento/**").hasAnyRole("USER", "ADMIN")
+	                    .requestMatchers("/medico/**").hasRole("ADMIN")
+	                    .requestMatchers("/unidade-saude/**").hasRole("ADMIN")
+	                    .requestMatchers("/telefone/**").hasRole("ADMIN")
+	                    .requestMatchers("/endereco/**").hasRole("ADMIN")
 				)
 				.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
 				.build();
