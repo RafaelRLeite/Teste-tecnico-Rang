@@ -25,6 +25,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,6 +49,7 @@ public class Medico implements Serializable {
 
 	@CPF(message = "CPF invalido")
 	@NotBlank(message = "CPF não pode ser vazio")
+	@Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)", message = "cpf deve seguir o padrão 000.000.000-00")
 	@Column(name="nr_cpf",unique = true)
 	private String nr_cpf;
 
