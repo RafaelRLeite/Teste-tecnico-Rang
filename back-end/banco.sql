@@ -6,7 +6,7 @@ CREATE TABLE unidade_saude(
 	tx_razao_social varchar(255) NOT NULL,
 	tx_nome_fantasia varchar(255),
 	dt_abertura date,
-	dt_criacao_unidade_saude datetime(6)
+	dt_criacao_unidade_saude datetime(6) NOT NULL
 );
 
 CREATE TABLE medico(
@@ -15,14 +15,14 @@ CREATE TABLE medico(
 	tx_especialidade varchar(255) NOT NULL,
 	nr_cpf varchar(255) NOT NULL,
 	nr_crm varchar(255) NOT NULL,
-	dt_criacao_medico datetime(6),
+	dt_criacao_medico datetime(6) NOT NULL,
 	unidade_saude bigint,
 	CONSTRAINT FK_unidade_saude_medico FOREIGN KEY (unidade_saude) REFERENCES unidade_saude(id) ON DELETE CASCADE
 );
 
 CREATE TABLE agendamento(
 	id bigint AUTO_INCREMENT PRIMARY KEY,
-	ts_horario datetime(6)  NOT NULL,
+	dt_marcacao datetime(6) NOT NULL,
 	status tinyint NOT NULL,
 	medico bigint NOT NULL,
 	dt_criacao_agendamento datetime(6),
@@ -59,27 +59,29 @@ CREATE TABLE users(
 	id bigint AUTO_INCREMENT PRIMARY KEY,
 	login varchar(255) NOT NULL UNIQUE,
 	password varchar(255) NOT NULL,
-	role varchar(255) NOT null
+	role tinyint(255) NOT null
 );
+
 
 INSERT INTO unidade_saude (nr_cnpj, tx_razao_social, tx_nome_fantasia, dt_abertura, dt_criacao_unidade_saude)
 VALUES
-    ("055000000000051", "Empresa Fictícia 5", "EF5 Empreendimentos", DATE(NOW()), NOW()),
-    ("066000000000051", "Empresa Fictícia 6", "EF6 Empreendimentos", DATE(NOW() + INTERVAL 5 YEAR), NOW());
+    ("05.500.000/0000-51", "Empresa Fictícia 5", "EF5 Empreendimentos", DATE(NOW()), NOW()),
+    ("06.600.000/0000-51", "Empresa Fictícia 6", "EF6 Empreendimentos", DATE(NOW() + INTERVAL 5 YEAR), NOW());
 
 INSERT INTO medico (tx_nome, tx_especialidade, nr_cpf, nr_crm, dt_criacao_medico, unidade_saude)
 VALUES
-    ("Marina Ferreira Santos", "Ginecologista", "03324859672", "987654321", NOW(), 1),
-    ("Carlos Silva Junior", "Dermatologista", "04435678903", "543210987", NOW(), 1),
-    ("Amanda Costa Pereira", "Oftalmologista", "05546789014", "456789012", NOW(), 1),
-    ("Luciana Oliveira Souza", "Clínico Geral", "06657890214", "567890123", NOW(), 1),
-    ("Fernando Santos Silva", "Ortopedista", "07768901325", "678901234", NOW(), 2),
-    ("Beatriz Gonçalves Lima", "Psiquiatra", "08879012436", "789012345", NOW(), 2),
-    ("Gustavo Pereira Almeida", "Cardiologista", "09980123547", "890123456", NOW(), 2),
-    ("Patricia Ferreira Costa", "Neurologista", "10091236578", "901234567", NOW(), 2);
+    ("Marina Ferreira Santos", "Ginecologista", "033.248.596-72", "987654321", NOW(), 1),
+    ("Carlos Silva Junior", "Dermatologista", "044.356.789-03", "543210987", NOW(), 1),
+    ("Amanda Costa Pereira", "Oftalmologista", "055.467.890-14", "456789012", NOW(), 1),
+    ("Luciana Oliveira Souza", "Clínico Geral", "066.578.902-14", "567890123", NOW(), 1),
+    ("Fernando Santos Silva", "Ortopedista", "077.689.013-25", "678901234", NOW(), 2),
+    ("Beatriz Gonçalves Lima", "Psiquiatra", "088.790.124-36", "789012345", NOW(), 2),
+    ("Gustavo Pereira Almeida", "Cardiologista", "099.801.235-47", "890123456", NOW(), 2),
+    ("Patricia Ferreira Costa", "Neurologista", "100.912.365-78", "901234567", NOW(), 2);
+
 
 INSERT INTO agendamento
-(ts_horario, status, medico, dt_criacao_agendamento)
+(dt_marcacao, status, medico, dt_criacao_agendamento)
 VALUES
 	(NOW(), 0, 1, NOW()),
 	(NOW() + INTERVAL 1 HOUR, 1, 1, NOW()),
@@ -150,3 +152,7 @@ VALUES
     (71850540, "Travessa dos Sonhos 456", NULL, "Setor Leste", "Porto Velho", "RO", NULL, 6),
     (71980670, "Praça Fictícia 654", NULL, "Centro", "Maceió", "AL", NULL, 7),
     (72050790, "Rua da Liberdade 123", NULL, "Liberdade", "Recife", "PE", NULL, 8);
+
+INSERT INTO users
+(login, password, `role`)
+VALUES("rafael", "$2a$10$3.ahAZgRd8SWD/Pv5ZoHKOVRuyuEd7VyBAzUBBRLn9m6Btj6kuXTW", 0);
