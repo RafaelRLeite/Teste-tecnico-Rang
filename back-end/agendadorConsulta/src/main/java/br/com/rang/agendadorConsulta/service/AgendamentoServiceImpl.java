@@ -16,8 +16,8 @@ import br.com.rang.agendadorConsulta.repository.AgendamentoRepository;
 public class AgendamentoServiceImpl extends CrudServiceImpl<Agendamento, Long> implements AgendamentoService {
 
 	@Autowired
-    private AgendamentoRepository agendamentoRepository;
-	
+	private AgendamentoRepository agendamentoRepository;
+
 	@Override
 	protected JpaRepository<Agendamento, Long> getRepository() {
 		return agendamentoRepository;
@@ -35,25 +35,17 @@ public class AgendamentoServiceImpl extends CrudServiceImpl<Agendamento, Long> i
 
 		return super.save(agendamento);
 	}
-	
-	 private boolean isHorarioDisponivel(List<Agendamento> agendamentos, LocalDateTime dataHoraMarcacao) {
-		 
-		 LocalTime horaAbertura = LocalTime.of(8, 0);
-		 LocalTime horaFechamento = LocalTime.of(18, 0);
-		 LocalTime horaMarcacao = dataHoraMarcacao.toLocalTime();
-		 
-		 agendamentos.forEach(agendamento -> {
-			 System.out.println(agendamento.getDt_marcacao() + " --> " + dataHoraMarcacao);
-		 });
-		 
-		 if(horaMarcacao.isBefore(horaAbertura) || horaMarcacao.isAfter(horaFechamento))return false;
-		 
-		 boolean anyMatch = agendamentos.stream()
-			.anyMatch(agentamento -> agentamento.getDt_marcacao().equals(dataHoraMarcacao));
-		 return anyMatch;
-		 
-	    }
-	
-	
-	
+
+	private Boolean isHorarioDisponivel(List<Agendamento> agendamentos, LocalDateTime dataHoraMarcacao) {
+
+		LocalTime horaAbertura = LocalTime.of(8, 0);
+		LocalTime horaFechamento = LocalTime.of(18, 0);
+		LocalTime horaMarcacao = dataHoraMarcacao.toLocalTime();
+
+		if (horaMarcacao.isBefore(horaAbertura) || horaMarcacao.isAfter(horaFechamento))
+			return false;
+
+		return agendamentos.stream().anyMatch(agentamento -> agentamento.getDt_marcacao().equals(dataHoraMarcacao));
+	}
+
 }

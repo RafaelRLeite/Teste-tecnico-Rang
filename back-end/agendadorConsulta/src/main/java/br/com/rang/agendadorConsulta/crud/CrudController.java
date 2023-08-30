@@ -15,44 +15,46 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 public abstract class CrudController<T, ID extends Serializable> {
 
 	public abstract CrudService<T, ID> getService();
-	
+
 	@PostMapping
-	public ResponseEntity<T> save(@Valid @RequestBody T entity){
-		return ResponseEntity.ok(getService().save(entity));
+	public ResponseEntity<?> save(@Valid @RequestBody T entity) {
+		return ResponseEntity.status(HttpStatus.CREATED).body((getService().save(entity)));
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<List<T>> findAll(){
+	public ResponseEntity<List<T>> findAll() {
 		return ResponseEntity.ok(getService().findAll());
 	}
-	
-	@GetMapping ("/paginate")
-	@ResponseStatus(HttpStatus.OK)
-	public Page<T> findPaginateAll(@PageableDefault(page = 0, size = 10, direction = Direction.ASC) Pageable page) {
-		return getService().findPaginateAll(page);
+
+	@GetMapping("/paginate")
+	public ResponseEntity<Page<T>> findPaginateAll(@PageableDefault(page = 0, size = 10, direction = Direction.ASC) Pageable page) {
+		return ResponseEntity.ok(getService().findPaginateAll(page));
 	}
-	
-	@GetMapping({"/{id}"})
-	public ResponseEntity<T> findById(@PathVariable("id") ID id){
-		return ResponseEntity.ok(getService().findById(id));
+
+	@GetMapping({ "/{id}" })
+	public ResponseEntity<?> findById(@PathVariable("id") ID id) {
+		try {
+			return ResponseEntity.ok(getService().findById(id));
+		} catch (EntityNotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
 	}
-	
-	@PutMapping({"/{id}"})
-	public ResponseEntity<T> update(@PathVariable("id") ID id, @Valid @RequestBody T entity) {
+
+	@PutMapping({ "/{id}" })
+	public ResponseEntity<?> update(@PathVariable("id") ID id, @Valid @RequestBody T entity) {
 		return ResponseEntity.ok(getService().update(id, entity));
 	}
-	
-	@DeleteMapping({"/{id}"})
-	public ResponseEntity<Void> delete(@PathVariable("id") ID id) {
-		getService().delete(id);
-		return ResponseEntity.noContent().build();
+
+	@DeleteMapping({ "/{id}" })
+	public ResponseEntity<Object> delete(@PathVariable("id") ID id) {
+		return new ResponseEntity<>("Deleted successsfully", HttpStatus.OK);
 	}
-	
+
 }

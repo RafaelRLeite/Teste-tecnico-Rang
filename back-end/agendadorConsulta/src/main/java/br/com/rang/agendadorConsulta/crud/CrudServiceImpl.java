@@ -31,7 +31,7 @@ public abstract class CrudServiceImpl<T, ID extends Serializable> implements Cru
 			getRepository().deleteById(id);
 			return;
 		}
-		throw new EntityNotFoundException("A entidade do ID: " + id + " não foi encontrada");
+		throw new EntityNotFoundException("Entity not exist with ID: " + id + " Not found");
 	}
 
 	@Override
@@ -46,12 +46,12 @@ public abstract class CrudServiceImpl<T, ID extends Serializable> implements Cru
 
 	@Override
 	public T findById(ID id) {
-		return getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException("A entidade do ID: " + id + " não foi encontrada"));
+		return getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException("Entity not exist with ID: " + id + " Not found"));
 	}
 
 	@Override
 	public  T update(ID id, T entityUpdate) {
-		T entity = getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException("A entidade do ID: " + id + " não foi encontrada"));
+		T entity = getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException("Entity not exist with ID: " + id + " Not found"));
 		modelMapper.map(entityUpdate, entity);
 		return getRepository().save(entity);
 	}
