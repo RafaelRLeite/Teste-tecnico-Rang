@@ -1,0 +1,19 @@
+<section class="container">
+  <div class=" row mural-externo" *ngIf="listaAgendamentos.length > 0, else semAgendamentos">
+      <h1 class="ff-inter text-white col-lg-12 mt-0 mt-sm-12">Consultas Agendadas</h1>
+    <div class="mural-interno">
+      <div *ngFor="let agendamento of listaAgendamentos">
+        <app-agendamento [agendamento] = "agendamento"></app-agendamento>
+      </div>
+      <mat-paginator class="bg-transparent" [length]="totalCount" [pageSize]="pageSize" [pageSizeOptions]="[6, 9, 12]" (page)="handlePageEvent($event)" aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</section>
+
+<ng-template #semAgendamentos>
+  <div class="ff-inter sem-agendamentos">
+    <p>Ainda não há agendamentos</p>
+  </div>
+</ng-template>
+

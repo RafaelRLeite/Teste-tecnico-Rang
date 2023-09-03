@@ -1,0 +1,7 @@
+nav{
+  background-color: darkcyan;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
