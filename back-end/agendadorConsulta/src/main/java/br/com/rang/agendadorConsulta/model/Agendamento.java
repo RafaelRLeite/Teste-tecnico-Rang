@@ -3,7 +3,6 @@ package br.com.rang.agendadorConsulta.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.rang.agendadorConsulta.model.enums.Status;
@@ -50,7 +49,10 @@ public class Agendamento implements Serializable {
 	@Column(name = "dt_criacao_agendamento")
 	private LocalDateTime dt_criacao_agendamento;
 
-	@JsonBackReference(value = "medico_agendamento")
+	/**
+	 * Anotação que serve para serializar classes encadiadas evidando ciclos. No json do agendamento também teria os dados do médico.
+	 */
+//	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 	@JoinColumn(name = "medico")
 	@ManyToOne
 	private Medico medico;
