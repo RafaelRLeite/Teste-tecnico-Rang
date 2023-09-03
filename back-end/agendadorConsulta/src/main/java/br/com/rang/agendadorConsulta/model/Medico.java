@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.hibernate.validator.constraints.Length;
@@ -75,7 +76,7 @@ public class Medico implements Serializable {
 	@OneToMany(mappedBy = "medico", cascade = { CascadeType.ALL })
 	private List<Endereco> enderecos_medico;
 
-	@JsonManagedReference(value = "medico_agendamento")
+	@JsonIgnore
 	@OneToMany(mappedBy = "medico", cascade = { CascadeType.ALL })
 	private List<Agendamento> agendamentos;
 
