@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de Consultas Médicas
 
-| É um sistema de gerenciamento de consultas desenvolvido em Java, que utiliza a arquitetura de microserviços com Spring e o banco MySQL. Ele possui uma interface de usuário web utilizando Angular, HTML5 e CSS3 com visualização dos horários disponiveis dos médicos no formato de calendário. Além disso, o projeto é gerenciado pelo GIT e hospedado no GitHub. O objetivo do Gerenciamento de Consultas é lidar com agendamentos em unidades de saúde, sendo que cada unidade de saúde pode ter vários médicos, e cada médico pode ter vários horários disponíveis para agendamento. O paciente poderá selecionaruma unidade de saúde, escolher um médico e agendar um horário disponível.|
+| É um sistema de gerenciamento de consultas desenvolvido em Java, que utiliza a arquitetura de microserviços com Spring e o banco MySQL. Ele possui uma interface de usuário web utilizando Angular, HTML5 e CSS3 com visualização dos horários disponiveis dos médicos no formato de calendário. Além disso, o projeto é gerenciado pelo GIT e hospedado no GitHub. O objetivo do Gerenciamento de Consultas é lidar com agendamentos em unidades de saúde, sendo que cada unidade de saúde pode ter vários médicos, e cada médico pode ter vários horários disponíveis para agendamento. O paciente poderá selecionar uma unidade de saúde, escolher um médico e agendar um horário disponível.|
 | --- |
 
 ## Entidades
