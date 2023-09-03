@@ -1,0 +1,13 @@
+.marcacao{
+  display: flex;
+  background-image: url(../assets/img/homepage-bg-br.jpg);
+  background-repeat: no-repeat;
+  height: 38rem;
+}
+
+.visualizacao{
+  display: flex;
+  background-image: url(../assets/img/homepage-bg-online-consultation.jpg);
+  background-repeat: no-repeat;
+  height: 38rem;
+}
