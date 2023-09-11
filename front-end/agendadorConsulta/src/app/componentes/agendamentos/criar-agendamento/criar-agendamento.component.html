@@ -1,34 +1,41 @@
-<div class="container text-center d-flex">
-  <div class="row mural">
-    <header class="col-lg-12 mt-0 mt-sm-12">
+<section class="marcacao">
+  <div class="mural-externo">
+    <header>
       <h1 class="ff-inter text-white">Agende agora sua consulta</h1>
-      <h6 class="ff-inter">Escolha a Unidade de Saúde, medico e o horário da consulta</h6>
+      <h6 class="ff-inter">Escolha a Unidade de Saúde, Médico e o horário da consulta</h6>
     </header>
-    <div class="card card-color bg-transparent p-3 m-3">
-      <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-        <option selected>Unidade de Saúde</option>
-        <option value="1">Santa Maria</option>
-        <option value="2">Sobradinho</option>
-        <option value="3">Aguas claras</option>
-      </select>
-      <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-        <option selected>Médico</option>
-        <option value="1">Ginecologista - Rogerio</option>
-        <option value="2">Cardiologista - Layene</option>
-        <option value="3">Pediatra - Larissa</option>
-      </select>
-      <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-        <option selected>Horário</option>
-        <option value="1">12:00</option>
-        <option value="2">13:00</option>
-        <option value="3">14:00</option>
-      </select>
-    </div>
+      <form class="card mural-interno bg-transparent" [formGroup]="agendamentoForm" >
+        <div class="row">
+          <mat-form-field class="col-lg-6 col-md-12">
+            <mat-label>Escolha a Unidade de Saúde</mat-label>
+            <mat-select [(value)]="listaMedico" >
+              <mat-option *ngFor="let unidadeSaude of listaUnidadeSaude" [value]="unidadeSaude.medicos">
+              {{ unidadeSaude.tx_nome_fantasia }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-lg-6 col-md-12">
+            <mat-label>Escolha o Médico</mat-label>
+            <mat-select formControlName="medico" name="medico">
+              <mat-option *ngFor="let medico of listaMedico" [value]="medico">
+                {{ medico.tx_especialidade }} - Dr(a) {{ medico.tx_nome }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-lg-6 col-md-12">
+            <mat-label>Escolha a data</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dtMarcacaoControl" name="dtMarcacaoControl">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="col-lg-6 col-md-12">
+            <mat-label>Escolha a hora</mat-label>
+            <input matInput type="time" formControlName="hrMarcacaoControl" name="hrMarcacaoControl">
+          </mat-form-field>
+        </div>
+        <button mat-raised-button (click)="createrAgendamento()" color="primary" class="botao">Agendar</button>
+      </form>
   </div>
-</div>
-
-<ng-template>
-  <div class="ff-inter sem-pensamentos">
-    <p>Ainda não há agendamentos</p>
-  </div>
-</ng-template>
+</section>

@@ -5,3 +5,11 @@ nav{
   align-items: center;
   justify-content: space-between;
 }
+
+
+@media (min-width: 576px){
+  .dropdown-menu{
+    --bs-dropdown-min-width: 20rem;
+  }
+}
+

@@ -3,11 +3,11 @@
     <h5 class="card-title text-black">{{ agendamento.status }}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">{{ agendamento.dt_marcacao | date:'dd/MM/yyyy HH:mm' }}</h6>
     <p class="card-text">
-      Médico: {{agendamento.medico.tx_nome}}
+      Dr.(a) {{agendamento.medico.tx_nome}}
       <br>
       {{agendamento.medico.tx_especialidade}}
     </p>
-    <button href="#" type="button" class="btn btn-success m-3 opacity-75">Remarcar</button>
-    <button  href="#" type="button" class="btn btn-danger opacity-75">Cancelar</button>
+    <button  (click)="updateAgendamento(agendamento.id)" type="button" class="btn btn-success m-3 opacity-75">Remarcar</button>
+    <button  (click)="deleteAgendamento(agendamento.id)" type="button" class="btn btn-danger opacity-75">Cancelar</button>
   </div>
 </div>

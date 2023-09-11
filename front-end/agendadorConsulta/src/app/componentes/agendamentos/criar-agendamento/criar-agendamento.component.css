@@ -1,28 +1,39 @@
-.mural {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  margin: 1rem 0 2rem;
-}
-
-.card-color{
-  background-color: #0dd2f029;
-  max-width: 50rem;
-}
-
-.d-flex {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.sem-pensamentos {
-  text-align: center;
-  padding: 2rem 0 5rem;
-}
-
 h1 {
   font-style: italic;
+}
+
+h1, h6{
+  text-align: center;
+}
+
+.mural-externo {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
+  margin: 1rem 1rem 7rem 1rem;
+}
+
+.mural-interno {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  margin: 1rem;
+  width: 100%;
+  max-width: 50rem;
+  min-width: 18rem;
+}
+
+@media(min-width:1024px) {
+  .mural-interno {
+    align-self: flex-start;
+    margin: 1rem 0px 0px 15rem;
+  }
+}
+
+.marcacao {
+  background-image: url(../../../../assets/img/homepage-bg-br.jpg);
+  background-repeat: no-repeat;
+  height: 100%;
 }

@@ -1,3 +1,8 @@
+h1 {
+  font-style: italic;
+  text-align: center;
+}
+
 .sem-agendamentos {
   text-align: center;
   padding: 2rem 0 5rem;
@@ -8,42 +13,26 @@
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
+  flex-direction: column;
   margin: 1rem 0 2rem;
 }
 
-.mural-interno {
+.mural-interno{
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center;
   flex-direction: row;
-  margin: 1rem 0 8rem;
 }
 
-h1 {
-  font-style: italic;
-  text-align: center;
+.visualizacao{
+  background-image: url(../../../../assets/img/homepage-bg-online-consultation.jpg);
+  background-repeat: no-repeat;
+  height: 100%;
 }
 
-.demo-toggles {
+.paginacao{
   display: flex;
-  flex-direction: column;
-}
-
-.demo-toggles * {
-  margin-bottom: 16px;
-}
-
-.demo-options {
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-}
-
-.demo-data * {
-  margin: 16px 0;
-}
-
-.demo-paginator {
-  width: 600px;
+  justify-content: center;
+  margin-bottom: 7rem;
 }

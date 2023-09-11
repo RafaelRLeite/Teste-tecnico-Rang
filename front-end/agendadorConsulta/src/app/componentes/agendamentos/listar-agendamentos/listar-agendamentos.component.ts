@@ -10,29 +10,28 @@ import { AgendamentoService } from 'src/app/services/agendamento.service';
 })
 export class ListarAgendamentosComponent implements OnInit {
   listaAgendamentos: Agendamento[] = [];
-  totalCount: number = 0;
+  totalCount!: number;
   currentPageNumber: number = 0;
-  pageSize: number = 6;
+  pageSize: number = 3;
 
   constructor(private service: AgendamentoService) {}
 
   ngOnInit(): void {
-    this.service.getPaginateAll(this.currentPageNumber, this.pageSize).subscribe((response) => {
-      this.listaAgendamentos = response.content as Agendamento[];
-    });
+    this.getPaginateAll(this.currentPageNumber, this.pageSize);
   }
 
-  get() {
-    this.service.getPaginateAll(this.currentPageNumber, this.pageSize).subscribe((response) => {
-      this.listaAgendamentos = response.content as Agendamento[];
-      this.totalCount = response.totalElements
-        ? Number(response.totalElements)
-        : 0;
-    });
+  getPaginateAll(currentPageNumber: number, pageSize: number) {
+    this.service
+      .getPaginateAll(currentPageNumber, pageSize)
+      .subscribe((response) => {
+        this.listaAgendamentos = response.content as Agendamento[];
+        this.totalCount = response.totalElements
+          ? Number(response.totalElements)
+          : 0;
+      });
   }
 
-  handlePageEvent(e:PageEvent){
-    this.currentPageNumber = e.pageIndex + 1;
-    this.pageSize = e.pageSize
+  onPageChange(event: PageEvent) {
+    this.getPaginateAll(event.pageIndex, event.pageSize);
   }
 }

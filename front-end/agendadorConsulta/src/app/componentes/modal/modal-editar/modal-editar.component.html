@@ -1,0 +1,26 @@
+
+<!-- Modal -->
+<div class="modal-header bg-success">
+  <h5 class="modal-title">Editar Agendamento</h5>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="agendamentoForm">
+    <div class="row">
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>Escolha a data</mat-label>
+        <input matInput type="date" formControlName="dtMarcacaoControl" name="dtMarcacaoControl">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>Escolha a hora</mat-label>
+        <input matInput type="time" formControlName="hrMarcacaoControl" name="hrMarcacaoControl">
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="update()">Salvar</button>
+  <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Fechar</button>
+</div>

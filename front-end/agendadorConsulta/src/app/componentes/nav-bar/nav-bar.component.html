@@ -1,42 +1,32 @@
 <nav class="nav navbar navbar-dark navbar-expand-sm sticky-top">
   <div class="container">
     <a class="navbar-brand" href="index.html">
-      <img
-        class="me-5"
-        src="assets/img/estetoscopio.png"
-        alt="Logo"
-        width="70"
-        height="50"
-      /><br />
+      <img class="me-5" src="assets/img/estetoscopio.png" alt="Logo" width="70" height="50"/><br />
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Unidades de Saúde</a>
+          <a class="nav-link" [routerLink]="'criarAgendamento'">Agendar</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Médicos</a>
+          <a class="nav-link" [routerLink]="'listarAgendamento'">Agendamentos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Agendamentos</a>
+          <a class="nav-link" [routerLink]="'listarMedico'">Médicos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'listarUnidadeSaude'">Unidades de Saúde</a>
         </li>
       </ul>
       <div class="dropdown">
         <button type="button" class="btn text-white dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true" data-bs-auto-close="outside">
           Login
         </button>
-        <form class="dropdown-menu p-4">
+        <form class="dropdown-menu dropdown-menu-end dropdown-menu-xxl-start p-4">
           <div class="mb-3">
             <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
             <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
