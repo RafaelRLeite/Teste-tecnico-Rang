@@ -1,6 +1,7 @@
 package br.com.rang.agendadorConsulta.crud;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -54,7 +55,8 @@ public abstract class CrudController<T, ID extends Serializable> {
 
 	@DeleteMapping({ "/{id}" })
 	public ResponseEntity<Object> delete(@PathVariable("id") ID id) {
-		return new ResponseEntity<>("Deleted successsfully", HttpStatus.OK);
+		getService().delete(id);
+		return new ResponseEntity<>(Collections.singletonMap("message", "Deleted successfully"), HttpStatus.OK);
 	}
 
 }

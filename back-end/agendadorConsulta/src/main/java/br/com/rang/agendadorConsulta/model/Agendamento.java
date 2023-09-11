@@ -35,7 +35,7 @@ public class Agendamento implements Serializable {
 	private Long id;
 	
 	@NotNull
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_marcacao")
 	private LocalDateTime dt_marcacao;
