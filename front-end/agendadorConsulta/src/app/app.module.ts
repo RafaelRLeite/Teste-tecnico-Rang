@@ -4,8 +4,7 @@ import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
 import { CriarAgendamentoComponent } from './componentes/agendamentos/criar-agendamento/criar-agendamento.component';
 import { AgendamentoComponent } from './componentes/agendamentos/agendamento/agendamento.component';
 import { ListarAgendamentosComponent } from './componentes/agendamentos/listar-agendamentos/listar-agendamentos.component';
-import { ModalExcluirComponent } from './componentes/modal/modal-excluir/modal-excluir.component';
-import { ModalEditarComponent } from './componentes/modal/modal-editar/modal-editar.component';
+import { ModalEditarAgendamentoComponent } from './componentes/agendamentos/modal-agendamento/modal-editar-agendamento/modal-editar-agendamento.component';
 
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +22,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
+import { ListarMedicosComponent } from './componentes/medicos/listar-medicos/listar-medicos.component';
+import { ModalExcluirAgendamentoComponent } from './componentes/agendamentos/modal-agendamento/modal-excluir-agendamento/modal-excluir-agendamento.component';
+import { ModalCriarMedicoComponent } from './componentes/medicos/modal/modal-criar-medico/modal-criar-medico.component';
+import { ModalExcluirMedicoComponent } from './componentes/medicos/modal/modal-excluir-medico/modal-excluir-medico.component';
+import { ListarUnidadeSaudeComponent } from './componentes/unidade-saude/listar-unidade-saude/listar-unidade-saude.component';
+import { ModalCriarUnidadeSaudeComponent } from './componentes/unidade-saude/modal/modal-criar-unidade-saude/modal-criar-unidade-saude.component';
+import { ModalExcluirUnidadeSaudeComponent } from './componentes/unidade-saude/modal/modal-excluir-unidade-saude/modal-excluir-unidade-saude.component';
+import { ModalUpdateUnidadeSaudeComponent } from './componentes/unidade-saude/modal/modal-update-unidade-saude/modal-update-unidade-saude.component';
+import { ModalUpdateMedicoComponent } from './componentes/medicos/modal/modal-update-medico/modal-update-medico.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,8 +42,16 @@ import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
     ListarAgendamentosComponent,
     FooterComponent,
     NavBarComponent,
-    ModalEditarComponent,
-    ModalExcluirComponent,
+    ModalEditarAgendamentoComponent,
+    ModalExcluirAgendamentoComponent,
+    ListarMedicosComponent,
+    ModalCriarMedicoComponent,
+    ModalExcluirMedicoComponent,
+    ListarUnidadeSaudeComponent,
+    ModalCriarUnidadeSaudeComponent,
+    ModalExcluirUnidadeSaudeComponent,
+    ModalUpdateUnidadeSaudeComponent,
+    ModalUpdateMedicoComponent,
   ],
   imports: [
     BrowserModule,

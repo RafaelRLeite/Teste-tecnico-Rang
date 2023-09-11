@@ -4,11 +4,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AgendamentoService } from 'src/app/services/agendamento.service';
 
 @Component({
-  selector: 'app-modal-excluir',
-  templateUrl: './modal-excluir.component.html',
-  styleUrls: ['./modal-excluir.component.css'],
+  selector: 'app-modal-excluir-agendamento',
+  templateUrl: './modal-excluir-agendamento.component.html',
+  styleUrls: ['./modal-excluir-agendamento.component.css'],
 })
-export class ModalExcluirComponent implements OnInit {
+export class ModalExcluirAgendamentoComponent implements OnInit {
   id!: number;
 
   constructor(

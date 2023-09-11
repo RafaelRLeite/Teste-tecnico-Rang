@@ -5,11 +5,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-modal-editar',
-  templateUrl: './modal-editar.component.html',
-  styleUrls: ['./modal-editar.component.css'],
+  selector: 'app-modal-editar-agendamento',
+  templateUrl: './modal-editar-agendamento.component.html',
+  styleUrls: ['./modal-editar-agendamento.component.css'],
 })
-export class ModalEditarComponent implements OnInit {
+export class ModalEditarAgendamentoComponent implements OnInit {
   id!: number;
   agendamentoForm!: FormGroup;
   @Output() modalFechada = new EventEmitter<void>();
