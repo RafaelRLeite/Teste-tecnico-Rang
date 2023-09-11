@@ -1,16 +1,20 @@
 footer {
   background-color: darkcyan;
-  display: grid;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    "TextoCopyright Rodape .";
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 3rem 2rem;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media (min-width: 576px){
+  footer{
+    flex-direction: row;
+    justify-content: space-around
+  }
 }
 
 .TextoCopyright {
@@ -23,18 +27,10 @@ footer {
   grid-area: Rodape;
 }
 
-a{
+a {
   text-decoration-color: darkcyan;
 }
 
 footer small {
   color: white;
-}
-
-@media (max-width: 768px) {
-  footer {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 1rem;
-  }
 }
