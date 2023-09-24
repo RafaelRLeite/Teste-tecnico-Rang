@@ -50,7 +50,7 @@ public class Agendamento implements Serializable {
 	private LocalDateTime dt_criacao_agendamento;
 
 	/**
-	 * Anotação que serve para serializar classes encadiadas evidando ciclos. No json do agendamento também teria os dados do médico.
+	 * Anotação que serve para serializar classes encadiadas evitando ciclos. No json do agendamento também teria os dados do médico.
 	 */
 //	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 	@JoinColumn(name = "medico")

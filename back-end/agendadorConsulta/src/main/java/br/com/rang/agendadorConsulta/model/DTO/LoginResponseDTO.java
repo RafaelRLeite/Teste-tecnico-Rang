@@ -1,5 +1,7 @@
 package br.com.rang.agendadorConsulta.model.DTO;
 
-public record LoginResponseDTO(String message, String token) {
+import br.com.rang.agendadorConsulta.model.User;
+
+public record LoginResponseDTO(String message, String token, User user) {
 
 }

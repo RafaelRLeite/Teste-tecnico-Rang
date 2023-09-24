@@ -35,7 +35,11 @@ public abstract class CrudController<T, ID extends Serializable> {
 	}
 
 	@GetMapping("/paginate")
-	public ResponseEntity<Page<T>> findPaginateAll(@PageableDefault(page = 0, size = 10, direction = Direction.ASC) Pageable page) {
+	public ResponseEntity<Page<T>> findPaginateAll(@PageableDefault(
+													page = 0,
+													size = 10,
+													sort="id",
+													direction = Direction.DESC) Pageable page) {
 		return ResponseEntity.ok(getService().findPaginateAll(page));
 	}
 

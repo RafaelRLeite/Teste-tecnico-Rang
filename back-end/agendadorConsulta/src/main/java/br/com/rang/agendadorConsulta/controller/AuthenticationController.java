@@ -19,6 +19,7 @@ import br.com.rang.agendadorConsulta.model.User;
 import br.com.rang.agendadorConsulta.model.DTO.AuthenticationDTO;
 import br.com.rang.agendadorConsulta.model.DTO.LoginResponseDTO;
 import br.com.rang.agendadorConsulta.model.DTO.RegisterDTO;
+import br.com.rang.agendadorConsulta.model.DTO.RegisterResponseDTO;
 import br.com.rang.agendadorConsulta.repository.UserRepository;
 import jakarta.validation.Valid;
 
@@ -42,7 +43,7 @@ public class AuthenticationController {
 			Authentication auth = this.authenticationManager.authenticate(usernamePassword);
 			
 			String token = tokenService.generatedToken((User)auth.getPrincipal());
-			return ResponseEntity.ok(new LoginResponseDTO("Login bem-sucedido", token));
+			return ResponseEntity.ok(new LoginResponseDTO("Login bem-sucedido", token, (User)auth.getPrincipal()));
 			
 		} catch (AuthenticationException e) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
@@ -50,14 +51,14 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> register(@Valid @RequestBody RegisterDTO data) {
+	public ResponseEntity<RegisterResponseDTO> register(@Valid @RequestBody RegisterDTO data) {
 		if (repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 		
 		String encryptedpassword = new BCryptPasswordEncoder().encode(data.password());
 		User newUser = new User(data.login(), encryptedpassword, data.role());
 		this.repository.save(newUser);
 		
-		return ResponseEntity.ok().body("Registro bem-sucedido");
+		return ResponseEntity.ok(new RegisterResponseDTO("Registro bem-sucedido"));
 	}
 	
 }
