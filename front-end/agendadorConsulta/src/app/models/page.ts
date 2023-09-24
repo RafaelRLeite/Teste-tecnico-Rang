@@ -1,5 +1,9 @@
+import { Agendamento } from './agendamento';
+import { Medico } from './medico';
+import { UnidadeSaude } from './unidade-saude';
+
 export interface Page {
-  content: Array<Content>;
+  content: Array<Agendamento | Medico | UnidadeSaude>;
   pageable: Pageable;
   last: boolean;
   totalPages: number;
@@ -10,18 +14,7 @@ export interface Page {
   first: boolean;
   numberOfElements: number;
   empty: boolean;
-};
-
-export interface Content {
-  id?: number
-  dt_marcacao:string
-  status: string
-  dt_criacao_agendamento: string
-  medico: {
-    tx_nome:String
-    tx_especialidade:String
-  }
-};
+}
 
 export interface Pageable {
   sort: Sort;
@@ -30,16 +23,16 @@ export interface Pageable {
   pageSize: number;
   paged: boolean;
   unpaged: boolean;
-};
+}
 
 export interface Sort {
   empty: boolean;
   sorted: boolean;
   unsorted: boolean;
-};
+}
 
 export interface Sort2 {
   empty: boolean;
   sorted: boolean;
   unsorted: boolean;
-};
+}
