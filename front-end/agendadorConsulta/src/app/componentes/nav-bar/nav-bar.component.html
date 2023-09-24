@@ -1,6 +1,6 @@
 <nav class="nav navbar navbar-dark navbar-expand-sm sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" [routerLink]="'home'">
       <img class="me-5" src="assets/img/estetoscopio.png" alt="Logo" width="70" height="50"/><br />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -8,45 +8,48 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-0">
-        <li class="nav-item">
+      <ul *ngIf="estaLogado" class="navbar-nav me-auto mb-0">
+        <li  class="nav-item">
           <a class="nav-link" [routerLink]="'criarAgendamento'">Agendar</a>
         </li>
-        <li class="nav-item">
+        <li  class="nav-item">
           <a class="nav-link" [routerLink]="'listarAgendamento'">Agendamentos</a>
         </li>
-        <li class="nav-item">
+        <li  class="nav-item">
           <a class="nav-link" [routerLink]="'listarMedico'">Médicos</a>
         </li>
-        <li class="nav-item">
+        <li  class="nav-item">
           <a class="nav-link" [routerLink]="'listarUnidadeSaude'">Unidades de Saúde</a>
         </li>
       </ul>
-      <div class="dropdown">
-        <button type="button" class="btn text-white dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true" data-bs-auto-close="outside">
-          Login
-        </button>
-        <form class="dropdown-menu dropdown-menu-end dropdown-menu-xxl-start p-4">
-          <div class="mb-3">
-            <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-          </div>
-          <div class="mb-3">
-            <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-          </div>
-          <div class="mb-3">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-              <label class="form-check-label" for="dropdownCheck2">
-                Remember me
-              </label>
+      <div>
+        <div *ngIf="!estaLogado" class="dropdown">
+          <button #meuBotao type="button" class="btn text-white dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true" data-bs-auto-close="outside">
+            Login
+          </button>
+          <form class="dropdown-menu dropdown-menu-end dropdown-menu-xxl-start p-4" [formGroup]="loginForm">
+            <div class="flex">
+              <div class="mb-3">
+                <mat-form-field>
+                  <mat-label>Login</mat-label>
+                  <input matInput formControlName="login" name="login">
+                </mat-form-field>
+              </div>
+              <div class="mb-3">
+                <mat-form-field class="mb-3">
+                  <mat-label>Senha</mat-label>
+                    <input matInput [type]="esconder ? 'password' : 'text'" formControlName="password" name="password">
+                    <button mat-icon-button matSuffix (click)="esconder = !esconder" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="esconder">
+                      <mat-icon>{{esconder ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+              </div>
+              <button mat-raised-button (click)="login()" class="btn btn-primary">Login</button>
             </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
+          </form>
+        </div>
+        <button *ngIf="estaLogado" mat-raised-button (click)="logout()" class="nav-link text-white">logout</button>
       </div>
-      <a class="nav-link text-white" href="#">logout</a>
     </div>
   </div>
 </nav>

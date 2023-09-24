@@ -1,4 +1,4 @@
-nav{
+nav {
   background-color: darkcyan;
   background-size: cover;
   display: flex;
@@ -6,10 +6,19 @@ nav{
   justify-content: space-between;
 }
 
-
-@media (min-width: 576px){
-  .dropdown-menu{
+@media (min-width: 576px) {
+  .dropdown-menu {
     --bs-dropdown-min-width: 20rem;
   }
 }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-collapse {
+  justify-content: end;
+}
