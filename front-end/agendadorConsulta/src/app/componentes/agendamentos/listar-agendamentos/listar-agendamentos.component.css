@@ -1,34 +1,22 @@
-h1 {
-  font-style: italic;
-  text-align: center;
-}
-
 .sem-agendamentos {
   text-align: center;
   padding: 2rem 0 5rem;
 }
 
-.mural-externo {
+.card {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  flex-direction: column;
-  margin: 1rem 0 2rem;
-}
-
-.mural-interno{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
   justify-content: center;
   flex-direction: row;
+  overflow-x: auto;
+  max-height: 600px;
+  border: none;
 }
 
 .visualizacao{
   background-image: url(../../../../assets/img/homepage-bg-online-consultation.jpg);
   background-repeat: no-repeat;
-  height: 100%;
+  overflow-y: auto;
 }
 
 .paginacao{

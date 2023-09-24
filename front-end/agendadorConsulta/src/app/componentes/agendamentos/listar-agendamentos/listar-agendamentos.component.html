@@ -1,15 +1,16 @@
 <section class="visualizacao">
-  <div class="row mural-externo" *ngIf="listaAgendamentos.length > 0, else semAgendamentos">
-      <h1 class="ff-inter text-white">Consultas Agendadas</h1>
-      <div class="mural-interno">
+  <header class="m-5">
+  <h1 class="ff-inter text-white">Consultas Agendadas</h1>
+  </header>
+  <div class="card bg-transparent" *ngIf="listaAgendamentos.length > 0, else semAgendamentos">
       <div *ngFor="let agendamento of listaAgendamentos">
         <app-agendamento [agendamento] = "agendamento"></app-agendamento>
       </div>
     </div>
-      <mat-paginator class="bg-transparent paginacao" [length]="totalCount" [pageSizeOptions]="[3, 6]" [pageSize]="pageSize" (page)="onPageChange($event)" aria-label="Select page">
-      </mat-paginator>
-  </div>
+    <mat-paginator class="bg-transparent paginacao mt-1" [length]="totalCount" [pageSizeOptions]="[3, 6]" [pageSize]="pageSize" (page)="onPageChange($event)" aria-label="Select page">
+    </mat-paginator>
 </section>
+
 
 <ng-template #semAgendamentos>
     <div class="ff-inter sem-agendamentos">

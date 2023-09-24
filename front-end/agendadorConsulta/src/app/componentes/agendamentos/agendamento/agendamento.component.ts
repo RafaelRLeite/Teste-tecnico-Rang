@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { Agendamento } from 'src/app/model/agendamento';
+import { Agendamento } from 'src/app/models/agendamento';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalEditarAgendamentoComponent } from '../modal-agendamento/modal-editar-agendamento/modal-editar-agendamento.component';
-import { ModalExcluirComponent } from '../../modal/modal-excluir/modal-excluir.component';
+import { ModalExcluirAgendamentoComponent } from '../modal-agendamento/modal-excluir-agendamento/modal-excluir-agendamento.component';
+
 
 @Component({
   selector: 'app-agendamento',
@@ -13,7 +14,7 @@ export class AgendamentoComponent {
   @Input() agendamento: Agendamento = {
     id: 0,
     dt_marcacao: '',
-    status: '',
+    status: 0,
     dt_criacao_agendamento: '',
     medico: {
       tx_nome: '',
@@ -29,7 +30,7 @@ export class AgendamentoComponent {
   }
 
   deleteAgendamento(id: number | undefined) {
-    const modalRef = this.modal.open(ModalExcluirComponent);
+    const modalRef = this.modal.open(ModalExcluirAgendamentoComponent);
     modalRef.componentInstance.id = id;
   }
 }

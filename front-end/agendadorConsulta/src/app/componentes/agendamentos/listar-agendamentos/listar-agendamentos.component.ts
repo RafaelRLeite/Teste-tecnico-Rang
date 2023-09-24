@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Agendamento } from 'src/app/model/agendamento';
+import { Agendamento } from 'src/app/models/agendamento';
 import { AgendamentoService } from 'src/app/services/agendamento.service';
 
 @Component({
@@ -21,9 +21,7 @@ export class ListarAgendamentosComponent implements OnInit {
   }
 
   getPaginateAll(currentPageNumber: number, pageSize: number) {
-    this.service
-      .getPaginateAll(currentPageNumber, pageSize)
-      .subscribe((response) => {
+    this.service.getPaginateAll(currentPageNumber, pageSize).subscribe((response) => {
         this.listaAgendamentos = response.content as Agendamento[];
         this.totalCount = response.totalElements
           ? Number(response.totalElements)
