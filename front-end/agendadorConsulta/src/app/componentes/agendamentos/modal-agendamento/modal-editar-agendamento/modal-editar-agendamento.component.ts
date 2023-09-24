@@ -2,7 +2,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AgendamentoService } from 'src/app/services/agendamento.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modal-editar-agendamento',
@@ -12,14 +13,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ModalEditarAgendamentoComponent implements OnInit {
   id!: number;
   agendamentoForm!: FormGroup;
-  @Output() modalFechada = new EventEmitter<void>();
 
   constructor(
     public modal: NgbActiveModal,
     private service: AgendamentoService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private _snackBar:MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -45,11 +45,17 @@ export class ModalEditarAgendamentoComponent implements OnInit {
   }
 
   update() {
-    this.service
-      .updateAgendamento(this.id, this.agendamentoForm.value)
-      .subscribe((response) => {
-        this.modal.close('Close click');
-        this.recarregarComponente();
+    this.service.updateAgendamento(this.id, this.agendamentoForm.value).subscribe({
+        next: () => {
+            this.modal.close('Close click');
+            this.recarregarComponente();
+        },
+        error: () =>
+          this._snackBar.open('Ocorreu um erro na alteração do Agendamento', 'Fechar', {
+            duration: 5000,
+            verticalPosition: 'bottom',
+            panelClass:'custom-snackbar',
+          })
       });
   }
 

@@ -1,14 +1,11 @@
-<!-- Modal -->
 <div class="modal-header bg-danger text-light">
-  <h5 class="modal-title">Cancelando Agendamento</h5>
-  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <h5 class="modal-title">Cancelar agendamento</h5>
+  <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-  <h3 style="text-align: center;">Tem certeza que deseja cancelar?</h3>
+  <h3 style="text-align: center;">Por favor, confirme o cancelamento da consulta.</h3>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-danger" (click)="excluir()">Cancelar</button>
+  <button type="button" class="btn btn-danger" (click)="excluir()">Confirmar Cancelamento</button>
   <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Fechar</button>
 </div>

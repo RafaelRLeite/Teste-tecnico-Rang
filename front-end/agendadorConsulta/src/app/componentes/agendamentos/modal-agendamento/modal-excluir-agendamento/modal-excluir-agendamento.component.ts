@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AgendamentoService } from 'src/app/services/agendamento.service';
@@ -15,25 +16,34 @@ export class ModalExcluirAgendamentoComponent implements OnInit {
     private service: AgendamentoService,
     public modal: NgbActiveModal,
     public router: Router,
-    private route: ActivatedRoute
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.getById();
+    /*   this.getById(); */
   }
 
-  getById() {
+  /* getById() {
     this.service.getById(this.id).subscribe((response) => {
       if (response.id !== undefined) {
         this.id = response.id;
       }
     });
-  }
+  } */
 
   excluir() {
-    this.service.delete(this.id).subscribe((response) => {
-      this.modal.close('Close click');
-      this.recarregarComponente();
+    this.service.delete(this.id).subscribe({
+      next: () => {
+        this.modal.close('Close click');
+        this.recarregarComponente();
+      },
+      error: () =>
+        this._snackBar.open('Ocorreu um erro na exclusão do Agendamento', 'Fechar', {
+            duration: 5000,
+            verticalPosition: 'bottom',
+            panelClass: 'custom-snackbar',
+          }
+        ),
     });
   }
 
