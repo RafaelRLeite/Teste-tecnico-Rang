@@ -1,13 +1,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
+@import "~bootstrap/dist/css/bootstrap.css";
 
 html, body{
   height: 100%;
 }
 
 body{
-  overflow-y: scroll;
   background-color: #01c4a6;
+  overflow-y: auto;
 }
 
 * {
@@ -17,6 +18,11 @@ body{
 
 .ff-inter { font-family: 'Inter', sans-serif; }
 .ff-roboto-mono { font-family: 'Roboto Mono', monospace; }
+
+h1 {
+  font-style: italic;
+  text-align: center;
+}
 
 h2 {
   color: #154580;
@@ -40,4 +46,10 @@ h2 {
 .botao:hover {
   border: 2px solid #84EEC1;
   color: #84EEC1;
+}
+
+.custom-snackbar {
+  margin-top: 90px !important;
+  z-index: 1060 !important;
+
 }
