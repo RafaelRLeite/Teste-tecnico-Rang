@@ -1,8 +1,8 @@
-import { Agendamento } from 'src/app/model/agendamento';
+import { Agendamento } from 'src/app/models/agendamento';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Page } from '../model/page';
+import { Page } from '../models/page';
 
 @Injectable({
   providedIn: 'root',
@@ -20,23 +20,41 @@ export class AgendamentoService {
     return this.http.get<Agendamento>(`${this.API}/${id}`);
   }
 
-  createAgendamento(agendamento: Agendamento): Observable<Agendamento> {
+  /*
+    Requisição post com header Authorization: token para poder consumir o método. Esse método é utiliza se não
+    existir um interceptor
+  */
+  /* createAgendamentoToken(agendamento: Agendamento, httpHeader?: HttpHeaders): Observable<Agendamento> {
     const novoAgendamento: Agendamento = {
       dt_marcacao: this.formatDateTimeAndConcat(
         agendamento.dtMarcacaoControl,
         agendamento.hrMarcacaoControl
       ),
-      status: '0',
+      status: 0,
       dt_criacao_agendamento: this.formatCurrentDateTime(),
       medico: agendamento.medico
     };
-    return this.http.post<Agendamento>(this.API, novoAgendamento);
+    return this.http.post<Agendamento>(this.API, novoAgendamento, {headers: httpHeader});
+  } */
+
+  createAgendamento(agendamento: Agendamento): Observable<HttpResponse<Agendamento>> {
+    const novoAgendamento: Agendamento = {
+      dt_marcacao: this.formatDateTimeAndConcat(
+        agendamento.dtMarcacaoControl,
+        agendamento.hrMarcacaoControl
+      ),
+      status: 0,
+      dt_criacao_agendamento: this.formatCurrentDateTime(),
+      medico: agendamento.medico
+    };
+    console.table(novoAgendamento)
+    return this.http.post<Agendamento>(this.API, novoAgendamento , {observe: 'response'});
   }
 
   updateAgendamento(id: number, agendamento: Agendamento): Observable<Agendamento> {
     const novoAgendamento: Agendamento = {
       dt_marcacao: agendamento.dtMarcacaoControl + ' ' + agendamento.hrMarcacaoControl,
-      status: '2',
+      status: 2,
       dt_criacao_agendamento: this.formatCurrentDateTime(),
       medico: agendamento.medico
     };
@@ -52,7 +70,7 @@ export class AgendamentoService {
   }
 
   private formatDateTimeAndConcat(date: Date | undefined, hora: string | undefined): string {
-    if (date != undefined && hora != undefined) {
+    if ((date != undefined && hora != undefined) && (date != null  && hora != null)) {
       const ano = date.getFullYear();
       const mes = String(date.getMonth() + 1).padStart(2, '0');
       const dia = String(date.getDate()).padStart(2, '0');
