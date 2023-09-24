@@ -1,0 +1,17 @@
+.card-largura{
+	max-width: 18rem;
+}
+
+.imagem-carrosel-um{
+	height: 500px;
+}
+
+.imagem-carrosel-dois{
+	height: 500px;
+}
+
+.main{
+  overflow-y: auto;
+  height: 100%;
+  padding-bottom: 6rem;
+}

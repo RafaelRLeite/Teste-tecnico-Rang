@@ -1,1 +1,39 @@
-<p>modal-criar-medico works!</p>
+<div class="modal-header bg-success">
+  <h5 class="modal-title">Novo Médico</h5>
+  <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="medicoForm">
+    <div class="row">
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" maxlength="40" formControlName="tx_nome" name="tx_nome">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>CPF</mat-label>
+        <input matInput mask="000.000.000-00" type="text" maxlength="14" placeholder="000.000.000-00" formControlName="nr_cpf" name="nr_cpf">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>CRM</mat-label>
+        <input matInput type="text" maxlength="9" formControlName="nr_crm" name="nr_crm">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>especialidade</mat-label>
+        <input matInput type="text" maxlength="20" formControlName="tx_especialidade" name="tx_especialidade">
+      </mat-form-field>
+      <mat-label>Escolha a Unidade de Saúde</mat-label>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        formControlName="unidade_saude" name="unidade_saude">
+        <mat-radio-button class="example-radio-button" *ngFor="let unidadeSaude of listaUnidadeSaude" [value]="unidadeSaude">
+          {{unidadeSaude.tx_nome_fantasia}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="save()">Salvar</button>
+  <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Fechar</button>
+</div>

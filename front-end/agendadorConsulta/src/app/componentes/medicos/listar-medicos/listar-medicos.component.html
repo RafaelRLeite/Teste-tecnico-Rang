@@ -1,1 +1,132 @@
-<p>listar-medicos works!</p>
+<div class="container" style=" height: 100%;">
+  <h1 class="ff-inter text-white mt-3">Médicos</h1>
+  <div class="d-flex justify-content-end mb-4">
+    <button (click)="createMedico()" type="button" class="btn btn-success">Novo Médico</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered border-light">
+      <thead>
+        <tr class="table-primary table-bordered border-light">
+          <th></th>
+          <th scope="col">Nome</th>
+          <th scope="col">CPF</th>
+          <th scope="col">CRM</th>
+          <th scope="col">Especialidade</th>
+          <th scope="col">Data de Admissão</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of listaMedicos">
+          <tr class="table-success table-bordered border-light">
+            <td>
+              <button (click)="toggleExpandido(item)" type="button" class="btn btn-sm">
+                <span>&plus;</span>
+              </button>
+            </td>
+            <td>{{item.tx_nome}}</td>
+            <td>{{item.nr_cpf}}</td>
+            <td>{{item.nr_crm}}</td>
+            <td>{{item.tx_especialidade}}</td>
+            <td>{{item.dt_criacao_medico | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <button (click)="updateMedico(item.id)" type="button" class="btn btn-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+              </button>&nbsp;&nbsp;
+              <button (click)="deleteMedico(item.id)" type="button" class="btn btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="item.expandido" [class]="'conteudo-expandido'">
+            <td colspan="8">
+              <div class="p-3">
+                <table class="table table-bordered border-light" style="font-size: small;">
+                  <thead>
+                    <tr>
+                      <th colspan="6" class="table-success table-bordered border-light">Telefones</th>
+                    </tr>
+                  </thead>
+                  <thead>
+                    <tr class="table-success table-bordered border-light">
+                      <th scope="col">DDD</th>
+                      <th scope="col">Nº Celular</th>
+                      <th scope="col">DDD</th>
+                      <th scope="col">Nº Telefone</th>
+                        <th>
+                          <button (click)="addTelefone(item.id)" type="button" class="btn btn-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                          </button>
+                        </th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let telefone of item.telefones_medico">
+                    <td>{{telefone.nr_ddd_celular}}</td>
+                    <td>{{telefone.nr_celular}}</td>
+                    <td>{{telefone.nr_ddd_telefone}}</td>
+                    <td>{{telefone.nr_telefone}}</td>
+                    <td>
+                      <button (click)="deleteTelefone(telefone.id)" type="button" class="btn btn-dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+                <table class="table table-bordered border-light" style="font-size: small;">
+                  <thead>
+                    <tr>
+                      <th colspan="8" class="table-success table-bordered border-light">Endereços</th>
+                    </tr>
+                  </thead>
+                  <thead>
+                    <tr class="table-success table-bordered border-light">
+                      <th scope="col">CEP</th>
+                      <th scope="col">Bairro</th>
+                      <th scope="col">Complemento</th>
+                      <th scope="col">Localidade</th>
+                      <th scope="col">Logradouro</th>
+                      <th scope="col">UF</th>
+                        <th>
+                          <button (click)="addEndereco(item.id)" type="button" class="btn btn-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                          </button>
+                        </th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let endereco of item.enderecos_medico">
+                    <td>{{endereco.nr_cep}}</td>
+                    <td>{{endereco.tx_bairro}}</td>
+                    <td>{{endereco.tx_complemento}}</td>
+                    <td>{{endereco.tx_localidade}}</td>
+                    <td>{{endereco.tx_logradouro}}</td>
+                    <td>{{endereco.tx_uf}}</td>
+                    <td>
+                      <button (click)="deleteEndereco(endereco.id)" type="button" class="btn btn-dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <mat-paginator class="bg-transparent paginacao" [length]="totalCount" [pageSizeOptions]="[5, 10]" [pageSize]="pageSize" (page)="onPageChange($event)" aria-label="Select page">
+  </mat-paginator>
+</div>

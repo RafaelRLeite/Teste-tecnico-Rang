@@ -1,0 +1,38 @@
+<div class="modal-header bg-success">
+  <h5 class="modal-title">Novo Endereço</h5>
+  <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="enderecoForm">
+    <div class="row">
+      <mat-form-field class="col-lg-12 col-md-12">
+        <mat-label>Endereço</mat-label>
+        <input matInput maxlength="40" formControlName="tx_logradouro" name="tx_logradouro">
+      </mat-form-field>
+      <mat-form-field class="col-lg-12 col-md-12">
+        <mat-label>Complemento</mat-label>
+        <input matInput maxlength="40" formControlName="tx_complemento" name="tx_complemento">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>Bairro</mat-label>
+        <input matInput maxlength="30"  type="text" formControlName="tx_bairro" name="tx_bairro">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>Cidade</mat-label>
+        <input matInput maxlength="40" formControlName="tx_localidade" name="tx_localidade">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>UF</mat-label>
+        <input matInput maxlength="2" formControlName="tx_uf" name="tx_uf">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>CEP</mat-label>
+        <input matInput mask="00.000-000" type="text" maxlength="10" placeholder="00.000-000" formControlName="nr_cep" name="nr_cep">
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="save()">Salvar</button>
+  <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Fechar</button>
+</div>

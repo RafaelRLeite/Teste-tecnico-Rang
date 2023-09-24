@@ -1,0 +1,57 @@
+<main class="main">
+<section class="carousel">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner" >
+      <div class="carousel-item active">
+        <img src="../../../assets/img/Hospital building-bro.png" class="imagem-carrosel-um" alt="...">
+        <div class="carousel-caption d-none d-md-block h-50">
+          <h1 class="display-3">Aproveite melhor o seu tempo</h1>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/img/undraw_medicine_b-1-ol.svg" class="d-block w-100 imagem-carrosel-dois" alt="...">
+        <div class="carousel-caption d-none d-md-block h-30">
+          <h2>Economize e ganhe saúde</h2>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+<section class="m-5">
+  <p class="text-center text-black ff-inter">Nossa plataforma de agendamento de consultas online oferece uma solução eficiente e conveniente para marcar consultas médicas. Com alguns cliques, você pode economizar tempo valioso, evitar a burocracia de marcações tradicionais e garantir o acesso a médicos e especialistas no horário que mais lhe convém. Simplificamos o processo para que você possa focar no que realmente importa: sua saúde e bem-estar.</p>
+</section>
+
+<section class="container-fluid bg-light mb-5">
+  <div class="row justify-content-center" >
+    <article  class="card card-largura col-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 p-0 m-4">
+      <div class="card-body">
+        <h5 class="card-title">Realize o seu cadastro</h5>
+        <form [formGroup]="registroForm">
+          <mat-form-field>
+            <mat-label>Login</mat-label>
+            <input matInput formControlName="login" name="login">
+          </mat-form-field>
+          <mat-form-field class="mb-3">
+            <mat-label>Senha</mat-label>
+              <input matInput type='text'formControlName="password" name="password">
+          </mat-form-field>
+        <button mat-raised-button (click)="registrar()" class="btn btn-primary">cadastrar</button>
+        </form>
+      </div>
+    </article>
+  </div>
+</section>
+</main>
