@@ -1,5 +1,4 @@
-import { CPFPipe } from './../../../../../../../../../front-angular/src/app/component/pipe/cpf.pipe';
-import { FormBuilder, FormGroup, Validators, NgModel } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MedicoService } from 'src/app/services/medico.service';
