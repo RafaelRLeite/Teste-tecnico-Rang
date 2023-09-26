@@ -47,7 +47,6 @@ export class AgendamentoService {
       dt_criacao_agendamento: this.formatCurrentDateTime(),
       medico: agendamento.medico
     };
-    console.table(novoAgendamento)
     return this.http.post<Agendamento>(this.API, novoAgendamento , {observe: 'response'});
   }
 
