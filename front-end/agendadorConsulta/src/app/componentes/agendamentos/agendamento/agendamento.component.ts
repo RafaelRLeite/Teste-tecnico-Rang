@@ -4,7 +4,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalEditarAgendamentoComponent } from '../modal-agendamento/modal-editar-agendamento/modal-editar-agendamento.component';
 import { ModalExcluirAgendamentoComponent } from '../modal-agendamento/modal-excluir-agendamento/modal-excluir-agendamento.component';
 
-
 @Component({
   selector: 'app-agendamento',
   templateUrl: './agendamento.component.html',
@@ -33,4 +32,19 @@ export class AgendamentoComponent {
     const modalRef = this.modal.open(ModalExcluirAgendamentoComponent);
     modalRef.componentInstance.id = id;
   }
+
+  statusAgendamento(): string {
+    switch (this.agendamento.status) {
+      case 'Consulta agendada':
+        return 'agendamento__agendada';
+      case 'Consulta concluida':
+        return 'agendamento__concluido';
+      case 'Consulta remarcada':
+        return 'agendamento__remarcado';
+      default:
+        return 'agendamento__cancelado';
+    }
+  }
+
+
 }

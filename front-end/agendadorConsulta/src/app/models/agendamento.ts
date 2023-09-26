@@ -3,7 +3,7 @@ export interface Agendamento {
   dtMarcacaoControl?: Date;
   hrMarcacaoControl?: string;
   dt_marcacao: string;
-  status: number;
+  status: number | string;
   dt_criacao_agendamento: string;
   medico: {
     tx_nome: String;

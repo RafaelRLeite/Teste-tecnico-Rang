@@ -22,8 +22,6 @@ export class AutenticacaoService {
   constructor(private http: HttpClient, private router: Router,) {}
 
   login(autenticacao: Autenticacao): Observable<AutenticacaoResponse> {
-    console.log("Entrou no login");
-    console.table(autenticacao);
     return this.http.post<AutenticacaoResponse>(`${this.API}/login`, autenticacao).pipe(
      map((resposta) => {
       sessionStorage.setItem('token', resposta.token);
