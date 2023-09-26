@@ -70,14 +70,14 @@ VALUES
 
 INSERT INTO medico (tx_nome, tx_especialidade, nr_cpf, nr_crm, dt_criacao_medico, unidade_saude)
 VALUES
-    ("Marina Ferreira Santos", "Ginecologista", "033.248.596-72", "987654321", NOW(), 1),
-    ("Carlos Silva Junior", "Dermatologista", "044.356.789-03", "543210987", NOW(), 1),
-    ("Amanda Costa Pereira", "Oftalmologista", "055.467.890-14", "456789012", NOW(), 1),
-    ("Luciana Oliveira Souza", "Clínico Geral", "066.578.902-14", "567890123", NOW(), 1),
-    ("Fernando Santos Silva", "Ortopedista", "077.689.013-25", "678901234", NOW(), 2),
-    ("Beatriz Gonçalves Lima", "Psiquiatra", "088.790.124-36", "789012345", NOW(), 2),
-    ("Gustavo Pereira Almeida", "Cardiologista", "099.801.235-47", "890123456", NOW(), 2),
-    ("Patricia Ferreira Costa", "Neurologista", "100.912.365-78", "901234567", NOW(), 2);
+    ("Marina Ferreira Santos", "Ginecologista", "414.453.720-02", "987654321", NOW(), 1),
+    ("Carlos Silva Junior", "Dermatologista", "186.561.790-39", "543210987", NOW(), 1),
+    ("Amanda Costa Pereira", "Oftalmologista", "416.992.540-87", "456789012", NOW(), 1),
+    ("Luciana Oliveira Souza", "Clínico Geral", "780.308.560-16", "567890123", NOW(), 1),
+    ("Fernando Santos Silva", "Ortopedista", "120.389.650-64", "678901234", NOW(), 2),
+    ("Beatriz Gonçalves Lima", "Psiquiatra", "960.499.020-97", "789012345", NOW(), 2),
+    ("Gustavo Pereira Almeida", "Cardiologista", "902.257.880-12", "890123456", NOW(), 2),
+    ("Patricia Ferreira Costa", "Neurologista", "023.106.880-88", "901234567", NOW(), 2);
 
 
 INSERT INTO agendamento
