@@ -37,7 +37,7 @@ export class ModalExcluirMedicoComponent implements OnInit {
         if (response.status === 200) {
           this._snackBar.open('Médico excluido com sucesso!', 'Fechar', {
             duration: 5000,
-            verticalPosition: 'bottom',
+            verticalPosition: 'top',
             panelClass: 'custom-snackbar',
           });
           this.modal.close('Close click');

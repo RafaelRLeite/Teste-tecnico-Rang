@@ -27,12 +27,16 @@ export class ModalExcluirTelefoneComponent implements OnInit {
         this.modal.close('Close click');
         this._snackBar.open('Telefone excluido com sucesso!', 'Fechar', {
           duration: 5000,
+          verticalPosition: 'top',
+          panelClass: 'custom-snackbar',
         });
         this.recarregarComponente()
       },
       error: () => {
         this._snackBar.open('Ocorreu um erro na exclusão do Telefone!','Fechar', {
             duration: 5000,
+            verticalPosition: 'bottom',
+            panelClass: 'custom-snackbar',
           }
         );
       },

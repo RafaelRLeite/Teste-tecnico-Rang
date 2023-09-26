@@ -27,7 +27,7 @@ export class ModalExcluirEnderecoComponent implements OnInit {
         this.modal.close('Close click');
         this._snackBar.open('Endereço excluido com sucesso!', 'Fechar', {
           duration: 5000,
-          verticalPosition: 'bottom',
+          verticalPosition: 'top',
           panelClass:'custom-snackbar',
         });
         this.recarregarComponente()

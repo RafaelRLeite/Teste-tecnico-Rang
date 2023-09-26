@@ -34,18 +34,21 @@ export class ModalCriarTelefoneComponent implements OnInit {
   }
 
   save() {
-    console.table(this.telefoneForm.value);
     this.service.save(this.telefoneForm.value).subscribe({
       next: () => {
         this._snackBar.open('Telefone Salvo com sucesso!', 'Fechar', {
-          duration: 5000
+          duration: 5000,
+          verticalPosition: 'top',
+          panelClass: 'custom-snackbar',
         });
         this.modal.close('Close click');
         this.recarregarComponente();
       },
       error: () => {
         this._snackBar.open('Erro no salvamento do Telefone', 'Fechar', {
-          duration: 5000
+          duration: 5000,
+          verticalPosition: 'bottom',
+          panelClass: 'custom-snackbar',
         });
       },
     });

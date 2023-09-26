@@ -34,13 +34,18 @@ export class ModalExcluirAgendamentoComponent implements OnInit {
   excluir() {
     this.service.delete(this.id).subscribe({
       next: () => {
+        this._snackBar.open('Consulta cancelada!', 'Fechar', {
+          duration: 5000,
+          verticalPosition: 'top',
+          panelClass: 'custom-snackbar',
+        });
         this.modal.close('Close click');
         this.recarregarComponente();
       },
       error: () =>
-        this._snackBar.open('Ocorreu um erro na exclusão do Agendamento', 'Fechar', {
+        this._snackBar.open('Ocorreu um erro no cancelamento da consulta', 'Fechar', {
             duration: 5000,
-            verticalPosition: 'bottom',
+            verticalPosition: 'top',
             panelClass: 'custom-snackbar',
           }
         ),

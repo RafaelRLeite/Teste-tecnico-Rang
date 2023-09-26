@@ -44,7 +44,7 @@ export class ModalCriarMedicoComponent implements OnInit {
       next: () =>{
         this._snackBar.open('Médico salvo com sucesso!', 'Fechar', {
           duration: 5000,
-          verticalPosition: 'bottom',
+          verticalPosition: 'top',
           panelClass: 'custom-snackbar',
         });
         this.modal.close('Close click');

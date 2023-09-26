@@ -47,11 +47,16 @@ export class ModalEditarAgendamentoComponent implements OnInit {
   update() {
     this.service.updateAgendamento(this.id, this.agendamentoForm.value).subscribe({
         next: () => {
-            this.modal.close('Close click');
-            this.recarregarComponente();
+          this._snackBar.open('Consulta remarcada com sucesso!', 'Fechar', {
+          duration: 5000,
+          verticalPosition: 'top',
+          panelClass: 'custom-snackbar',
+        });
+        this.modal.close('Close click');
+        this.recarregarComponente();
         },
         error: () =>
-          this._snackBar.open('Ocorreu um erro na alteração do Agendamento', 'Fechar', {
+          this._snackBar.open('Ocorreu um erro na remarcação da consulta', 'Fechar', {
             duration: 5000,
             verticalPosition: 'bottom',
             panelClass:'custom-snackbar',
