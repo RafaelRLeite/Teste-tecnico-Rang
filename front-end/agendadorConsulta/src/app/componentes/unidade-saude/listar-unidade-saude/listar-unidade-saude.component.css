@@ -1,0 +1,14 @@
+tr,
+h1 {
+    text-align: center;
+}
+
+.paginacao{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7rem;
+}
+
+.container{
+  overflow-y: auto;
+}

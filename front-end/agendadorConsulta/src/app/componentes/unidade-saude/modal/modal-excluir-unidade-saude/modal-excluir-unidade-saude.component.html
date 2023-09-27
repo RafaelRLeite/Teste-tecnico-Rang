@@ -1,1 +1,11 @@
-<p>modal-excluir-unidade-saude works!</p>
+<div class="modal-header bg-danger text-light">
+  <h5 class="modal-title">Excluir Unidade de Saúde</h5>
+  <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <h3 style="text-align: center;">Por favor, confirme a exclusão da Unidade de Saúde.</h3>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="excluir()">Confirmar Exclusão</button>
+  <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Fechar</button>
+</div>

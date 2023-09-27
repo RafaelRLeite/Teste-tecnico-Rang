@@ -11,5 +11,6 @@ export interface UnidadeSaude {
   dt_criacao_unidade_saude: string;
   telefones_unidade_saude?: Telefone[];
   enderecos_unidade_saude?: Endereco[];
-  medicos: Medico[];
+  medicos?: Medico[];
+  expandido?: boolean;
 }

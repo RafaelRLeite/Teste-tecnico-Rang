@@ -1,1 +1,30 @@
-<p>modal-criar-unidade-saude works!</p>
+<div class="modal-header bg-success">
+  <h5 class="modal-title">Nova Unidade de Saúde</h5>
+  <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="unidadeSaudeForm">
+    <div class="row">
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>Razão Social</mat-label>
+        <input matInput type="text" maxlength="40" formControlName="tx_razao_social" name="tx_razao_social">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>Nome Fantasia</mat-label>
+        <input matInput type="text" maxlength="40" formControlName="tx_nome_fantasia" name="tx_nome_fantasia">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>CNPJ</mat-label>
+        <input matInput mask="00.000.000/0000-00" type="text" maxlength="18" placeholder="00.000.000/0000-00" formControlName="nr_cnpj" name="nr_cnpj">
+      </mat-form-field>
+      <mat-form-field class="col-lg-6 col-md-12">
+        <mat-label>Data da Abertura</mat-label>
+        <input matInput type="date" formControlName="dt_abertura" name="dt_abertura">
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="save()">Salvar</button>
+  <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Fechar</button>
+</div>
