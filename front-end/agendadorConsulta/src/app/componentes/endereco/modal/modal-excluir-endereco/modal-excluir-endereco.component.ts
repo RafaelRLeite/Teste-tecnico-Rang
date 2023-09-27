@@ -43,9 +43,10 @@ export class ModalExcluirEnderecoComponent implements OnInit {
   }
 
   recarregarComponente() {
+    const urlAtual = this.router.url;
     setTimeout(() => {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/listarMedico']);
+        this.router.navigate([urlAtual]);
       });
     }, 1000);
   }

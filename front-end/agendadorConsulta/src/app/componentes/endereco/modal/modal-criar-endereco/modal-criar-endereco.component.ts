@@ -31,8 +31,9 @@ export class ModalCriarEnderecoComponent implements OnInit  {
       tx_logradouro: ['', Validators.required],
       tx_uf: ['', Validators.required],
       long_unidade_saude: [null],
-      long_medico: [this.id]
+      long_medico: [null]
     });
+    this.validarEntity();
   }
 
   save() {
@@ -57,11 +58,25 @@ export class ModalCriarEnderecoComponent implements OnInit  {
     });
   }
 
-  recarregarComponente() {
+ private recarregarComponente() {
+    const urlAtual = this.router.url;
     setTimeout(() => {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/listarMedico']);
+        this.router.navigate([urlAtual]);
       });
     }, 1000);
+  }
+
+  private validarEntity() {
+    const url = this.router.url;
+    if (url === '/listarMedico') {
+      this.enderecoForm.patchValue({
+        long_medico: this.id,
+      });
+    } else {
+      this.enderecoForm.patchValue({
+        long_unidade_saude: this.id,
+      });
+    }
   }
 }

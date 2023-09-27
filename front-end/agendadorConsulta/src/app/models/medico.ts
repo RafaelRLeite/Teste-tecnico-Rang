@@ -11,7 +11,7 @@ export interface Medico {
   unidade_saude: {
     tx_razao_social: string;
   };
-  enderecos_medico?: Endereco[];
   telefones_medico?: Telefone[];
+  enderecos_medico?: Endereco[];
   expandido?: boolean;
 }

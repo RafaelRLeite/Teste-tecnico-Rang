@@ -62,7 +62,7 @@ export class ModalCriarMedicoComponent implements OnInit {
     });
   }
 
-  recarregarComponente() {
+  private recarregarComponente() {
     setTimeout(() => {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/listarMedico']);

@@ -43,10 +43,11 @@ export class ModalExcluirTelefoneComponent implements OnInit {
     });
   }
 
-  recarregarComponente() {
+  private recarregarComponente() {
+    const urlAtual = this.router.url;
     setTimeout(() => {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/listarMedico']);
+        this.router.navigate([urlAtual]);
       });
     }, 1000);
   }

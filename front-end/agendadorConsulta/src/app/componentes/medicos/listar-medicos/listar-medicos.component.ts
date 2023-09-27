@@ -29,9 +29,7 @@ export class ListarMedicosComponent implements OnInit {
   }
 
   getPaginateAll(currentPageNumber: number, pageSize: number) {
-    this.service
-      .getPaginateAll(currentPageNumber, pageSize)
-      .subscribe((response) => {
+    this.service.getPaginateAll(currentPageNumber, pageSize).subscribe((response) => {
         this.listaMedicos = response.content as Medico[];
         this.totalCount = response.totalElements
           ? Number(response.totalElements)

@@ -29,8 +29,9 @@ export class ModalCriarTelefoneComponent implements OnInit {
       nr_ddd_telefone: ['', Validators.required],
       nr_telefone: ['', Validators.required],
       long_unidade_saude: [null],
-      long_medico: [this.id]
+      long_medico: [null],
     });
+    this.validarEntity();
   }
 
   save() {
@@ -54,11 +55,25 @@ export class ModalCriarTelefoneComponent implements OnInit {
     });
   }
 
-  recarregarComponente() {
+  private recarregarComponente() {
+    const urlAtual = this.router.url;
     setTimeout(() => {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/listarMedico']);
+        this.router.navigate([urlAtual]);
       });
     }, 1000);
+  }
+
+  private validarEntity() {
+    const url = this.router.url;
+    if (url === '/listarMedico') {
+      this.telefoneForm.patchValue({
+        long_medico: this.id,
+      });
+    } else {
+      this.telefoneForm.patchValue({
+        long_unidade_saude: this.id,
+      });
+    }
   }
 }
