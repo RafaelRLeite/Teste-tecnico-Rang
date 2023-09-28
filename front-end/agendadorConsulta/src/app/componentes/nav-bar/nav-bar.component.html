@@ -15,10 +15,10 @@
         <li  class="nav-item">
           <a class="nav-link" [routerLink]="'listarAgendamento'">Agendamentos</a>
         </li>
-        <li  class="nav-item">
+        <li *ngIf="ehAdmin"  class="nav-item">
           <a class="nav-link" [routerLink]="'listarMedico'">Médicos</a>
         </li>
-        <li  class="nav-item">
+        <li *ngIf="ehAdmin"  class="nav-item">
           <a class="nav-link" [routerLink]="'listarUnidadeSaude'">Unidades de Saúde</a>
         </li>
       </ul>

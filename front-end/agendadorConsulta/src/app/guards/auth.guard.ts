@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   ActivatedRouteSnapshot,
   CanActivateFn,

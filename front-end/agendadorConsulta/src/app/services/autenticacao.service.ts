@@ -47,8 +47,15 @@ export class AutenticacaoService {
     return this.subjectLogin.asObservable();
   }
 
-  obterUsuario(){
-    this.subjectLogin.asObservable();
+  obterUsuario(): Observable<string> {
+    return this.subjectUsuario.pipe(
+      map((usuario) => {
+        if (usuario && usuario.role) {
+          return usuario.role;
+        }
+        return '';
+      })
+    );
   }
 
   registrar(registro: Registro): Observable<HttpResponse<String>> {

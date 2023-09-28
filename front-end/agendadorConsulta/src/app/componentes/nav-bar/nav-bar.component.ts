@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,6 +15,7 @@ export class NavBarComponent implements OnInit {
   @ViewChild('meuBotao') meuBotao!: ElementRef;
   estaLogado: boolean = false;
   esconder = true;
+  ehAdmin: boolean = false;
 
   constructor(
     private service: AutenticacaoService,
@@ -30,9 +32,16 @@ export class NavBarComponent implements OnInit {
     this.service.usuarioLogado().subscribe((estaLogado) => {
       this.estaLogado = estaLogado;
     });
+    this.service.obterUsuario().subscribe((user) => {
+      if (user === 'ADMIN') {
+        this.ehAdmin = true;
+      }
+    });
   }
 
   login() {
+    this.tirarEspaçosVazios('login')
+    this.tirarEspaçosVazios('password')
     this.service.login(this.loginForm.value).subscribe({
       next: (response) => {
         if (response?.user) {
@@ -41,20 +50,27 @@ export class NavBarComponent implements OnInit {
           this._snackBar.open('Bem vindo!', 'Fechar', {
             duration: 5000,
             verticalPosition: 'top',
-            panelClass:'custom-snackbar',
-          })
+            panelClass: 'custom-snackbar',
+          });
         }
       },
       error: () =>
         this._snackBar.open('Ocorreu um erro no Login', 'Fechar', {
           duration: 5000,
           verticalPosition: 'top',
-          panelClass:'custom-snackbar',
-        })
+          panelClass: 'custom-snackbar',
+        }),
     });
   }
 
   logout() {
     this.service.logout();
+    this.ehAdmin = false;
+  }
+
+  private tirarEspaçosVazios(campo: string): any {
+    const campoControl = this.loginForm.get(campo)?.value;
+    const campoControlSemEspacos = campoControl.replace(" ", "").trim();
+    this.loginForm.get(campo)?.setValue(campoControlSemEspacos);
   }
 }
