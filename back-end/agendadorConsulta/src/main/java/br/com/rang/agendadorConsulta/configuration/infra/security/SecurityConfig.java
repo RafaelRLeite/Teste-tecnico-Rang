@@ -35,8 +35,8 @@ public class SecurityConfig {
 				.authorizeHttpRequests(authorize -> authorize
 					.requestMatchers("/home", "/css/**", "/js/**").permitAll()
 					.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-					//.requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
 					.requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+					.requestMatchers(HttpMethod.GET, "/unidade-saude/**").hasAnyRole("USER", "ADMIN")
 					.requestMatchers("/agendamento/**").hasAnyRole("USER", "ADMIN")
 					.requestMatchers("/medico/**").hasRole("ADMIN")
 					.requestMatchers("/unidade-saude/**").hasRole("ADMIN")
