@@ -53,3 +53,8 @@ h2 {
   z-index: 1070 !important;
 
 }
+
+*::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
