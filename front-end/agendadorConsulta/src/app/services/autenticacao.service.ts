@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class AutenticacaoService {
 
-  private readonly API = `http://localhost:8080/auth`;
+  private readonly API = `http://44.204.3.69:8080/auth`;
 
   private subjectUsuario: BehaviorSubject<any> = new BehaviorSubject(null);
   private subjectLogin: BehaviorSubject<any> = new BehaviorSubject(false);

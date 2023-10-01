@@ -8,7 +8,7 @@ import { Telefone } from '../models/telefone';
 })
 export class TelefoneService {
 
-  private readonly API = `http://localhost:8080/telefone`;
+  private readonly API = `http://44.204.3.69:8080/telefone`;
 
   constructor(private http: HttpClient) { }
 
