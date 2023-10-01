@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class EnderecoService {
 
-  private readonly API = `http://localhost:8080/endereco`;
+  private readonly API = `http://44.204.3.69:8080/endereco`;
 
   constructor(private http: HttpClient) { }
 

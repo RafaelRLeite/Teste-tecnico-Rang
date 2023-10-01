@@ -10,7 +10,7 @@ import { UnidadeSaude } from '../models/unidade-saude';
 })
 export class MedicoService {
 
-  private readonly API = `http://localhost:8080/medico`;
+  private readonly API = `http://44.204.3.69:8080/medico`;
 
   constructor(private http: HttpClient) { }
 
