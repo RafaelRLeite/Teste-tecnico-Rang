@@ -8,7 +8,7 @@ import { Page } from '../models/page';
   providedIn: 'root',
 })
 export class AgendamentoService {
-  private readonly API = `http://44.204.3.69:8080/agendamento`;
+  private readonly API = `http://54.173.26.146:8080/agendamento`;
 
   constructor(private http: HttpClient) {}
 
