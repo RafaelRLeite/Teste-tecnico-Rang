@@ -10,6 +10,7 @@ import { ModalExcluirTelefoneComponent } from '../../telefone/modal/modal-exclui
 import { ModalCriarTelefoneComponent } from '../../telefone/modal/modal-criar-telefone/modal-criar-telefone.component';
 import { ModalCriarEnderecoComponent } from '../../endereco/modal/modal-criar-endereco/modal-criar-endereco.component';
 import { ModalExcluirEnderecoComponent } from '../../endereco/modal/modal-excluir-endereco/modal-excluir-endereco.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-listar-medicos',
@@ -21,11 +22,19 @@ export class ListarMedicosComponent implements OnInit {
   totalCount!: number;
   currentPageNumber: number = 0;
   pageSize: number = 5;
+  filterForm!: FormGroup;
 
-  constructor(private service: MedicoService, private modal: NgbModal) {}
+  constructor(
+    private service: MedicoService,
+     private modal: NgbModal,
+     private formBuilder: FormBuilder,
+     ) {}
 
   ngOnInit(): void {
     this.getPaginateAll(this.currentPageNumber, this.pageSize);
+    this.filterForm = this.formBuilder.group({
+      tx_nome: ['']
+    })
   }
 
   getPaginateAll(currentPageNumber: number, pageSize: number) {
@@ -35,6 +44,17 @@ export class ListarMedicosComponent implements OnInit {
           ? Number(response.totalElements)
           : 0;
       });
+  }
+
+  getForFilterPaginateAll(){
+    const filter = this.filterForm.get('tx_nome')?.value
+    console.log(filter)
+    this.service.getForFilterPaginateAll(this.currentPageNumber, this.pageSize, filter).subscribe((response) => {
+      this.listaMedicos = response.content as Medico[];
+        this.totalCount = response.totalElements
+          ? Number(response.totalElements)
+          : 0;
+    });
   }
 
   createMedico() {

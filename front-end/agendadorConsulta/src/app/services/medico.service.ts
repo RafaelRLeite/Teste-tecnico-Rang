@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Medico } from '../models/medico';
 import { Observable } from 'rxjs';
@@ -10,13 +10,20 @@ import { UnidadeSaude } from '../models/unidade-saude';
 })
 export class MedicoService {
 
-  private readonly API = `http://54.173.26.146:8080/medico`;
+  private readonly API = `http://localhost:8080/medico`;
 
   constructor(private http: HttpClient) { }
 
   getAll():Observable<Medico[]>{
     return this.http.get<Medico[]>(this.API);
   }
+
+  getForFilterPaginateAll(currentPageNumber: number, pageSize: number, filter: string): Observable<Page> {
+    const params = new HttpParams().set('tx_nome', filter);
+    return this.http.get<Page>(`${this.API}/filter`, {
+      params: params,
+    });
+  };
 
   getPaginateAll(currentPageNumber: number, pageSize: number): Observable<Page> {
     return this.http.get<Page>(`${this.API}/paginate?page=${currentPageNumber}&size=${pageSize}`);

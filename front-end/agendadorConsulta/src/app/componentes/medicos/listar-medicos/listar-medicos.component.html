@@ -1,7 +1,17 @@
 <div class="container" style=" height: 100%;">
   <h1 class="ff-inter text-white mt-3">Médicos</h1>
-  <div class="d-flex justify-content-end mb-4">
-    <button (click)="createMedico()" type="button" class="btn btn-success">Novo Médico</button>
+  <div class="row flex">
+    <div class="col-4 d-flex">
+      <form [formGroup]="filterForm">
+        <mat-form-field>
+          <input matInput type="text" maxlength="40" formControlName="tx_nome" name="tx_nome">
+        </mat-form-field>
+      </form>
+      <button (click)="getForFilterPaginateAll()" type="button" class="btn btn-success botaoFiltro">Filtrar</button>
+    </div>
+    <div class="col-8 d-flex justify-content-end">
+      <button (click)="createMedico()" type="button" class="btn btn-success botaoNovoMedico">Novo Médico</button>
+    </div>
   </div>
   <div class="table-responsive">
     <table class="table table-hover table-bordered border-light">

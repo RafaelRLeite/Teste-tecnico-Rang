@@ -8,7 +8,7 @@ import { Page } from '../models/page';
   providedIn: 'root',
 })
 export class UnidadeSaudeService {
-  private readonly API = `http://54.173.26.146:8080/unidade-saude`;
+  private readonly API = `http://localhost:8080/unidade-saude`;
 
   constructor(private http: HttpClient) {}
 

@@ -12,3 +12,21 @@ h1 {
 .container{
   overflow-y: auto;
 }
+
+.botaoFiltro{
+  height: 3.5rem;
+  width: 5.5rem;
+  margin-left: 1rem;
+}
+
+.botaoNovoMedico{
+  height: 3.5rem;
+  width: 10rem;
+}
+
+@media (max-width: 768px){
+  .flex{
+    flex-direction: column;
+  }
+}
+
